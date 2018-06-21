@@ -23,6 +23,7 @@ public class GenericFunctions extends TestNGListeners {
 	
 	
 	public static  WebDriver driver;
+	
 
 	
 	
@@ -331,6 +332,25 @@ public class GenericFunctions extends TestNGListeners {
 		
 		
 	}
+	public static boolean data_pass(WebElement ele,String value){
+
+		boolean status=true;
+		try{
+			
+			ele.sendKeys(value);
+			logEvent("status", "the value is send into the field");
+		}
+		catch(Exception e){
+			logEvent("fail", "value is not send to the fielad");
+			status=false;
+		}
+		
+		
+		
+		return status;
+		
+	}
+	
 	
 	}
 	
