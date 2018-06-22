@@ -28,10 +28,13 @@ public class GenerateReports {
 	{
 		
 		extent=new ExtentReports(createResultFolder()+"\\"+TestNGListeners.crntclass+".html");
+		
 		resultfile=createResultFolder()+"\\"+TestNGListeners.crntclass+".html";
 		
 		extent.addSystemInfo("Project Name","Testing Masters Demo Project").
+		
 		addSystemInfo("Environment","QA")
+		
 		.addSystemInfo("Sprint Name","Sprint 1");
 		
 	

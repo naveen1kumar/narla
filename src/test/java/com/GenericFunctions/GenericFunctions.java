@@ -24,8 +24,6 @@ public class GenericFunctions extends TestNGListeners {
 	
 	public static  WebDriver driver;
 	
-
-	
 	
 
 	/*************************************************
@@ -115,7 +113,9 @@ public class GenericFunctions extends TestNGListeners {
 	
 	
 	**************************************************/
-	
+	public static void naveen(){
+		
+	}
 	
 	
 	public static String getCommontestdata(String data)
@@ -332,6 +332,7 @@ public class GenericFunctions extends TestNGListeners {
 		
 		
 	}
+	//excel data is passed into the application.
 	public static boolean data_pass(WebElement ele,String value){
 
 		boolean status=true;
@@ -351,8 +352,51 @@ public class GenericFunctions extends TestNGListeners {
 		
 	}
 	
-	
+	public static String senddata(String sheetname,String userdata,int itr)
+	{
+		
+		String strQuery="INSERT INTO  "+ userdata+" from "+sheetname+ " where Tc_Name='"+crntclass+"' and Iteration="+itr;
+			//System.setProperty("ROW", "5");
+		//String strquery="INSERT INTO sheet2(name,country) values('peter','uk')";
+		System.out.println(strQuery);
+		
+		Recordset recordset;
+		
+		String fetcheddata="";
+		
+		
+		try {
+			
+			recordset = TestNGListeners.connection.executeQuery(strQuery);
+			
+			while(recordset.next()){
+				
+			//	System.out.println("Data is found and the data is " +recordset.getField(userdata));
+				
+			//fetcheddata=recordset.getField(name);
+				break;
+				
+				
+				}
+				 
+				recordset.close();
+			
+			
+		} catch (FilloException e) {
+			
+			System.out.println("No Records Found");
+		}
+		 
+		return fetcheddata;
+		
+		
 	}
+	
+		
+	}
+	
+	
+	
 	
 	
 	

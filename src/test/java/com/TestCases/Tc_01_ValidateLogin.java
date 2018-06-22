@@ -30,7 +30,9 @@ public class Tc_01_ValidateLogin extends GenericFunctions {
 		//sgn.gmailid();
 		//sgn.personalinformation();
 		//sgn.droupdown();
-		sgn.enter_Credentials();
+	sgn.enter_Credentials();
+	Login.statesRecive();
+	
 		Thread.sleep(5000);
 		
 

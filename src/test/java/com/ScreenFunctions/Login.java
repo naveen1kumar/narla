@@ -109,7 +109,7 @@ public class Login extends GenericFunctions {
 	public static WebElement btn_Sign_out;
 	
 	// user state the user
-		@FindBy(how = How.XPATH, using = "//select[@id='id_state']")
+		@FindBy(how = How.XPATH, using = "//select[@id='id_state']/option")
 		public static WebElement Edi_state;
 
 	/*
@@ -163,6 +163,20 @@ public class Login extends GenericFunctions {
 
 		return true;
 	}
+	//application data is received into the code
+		public static void statesRecive(){
+			
+			
+			java.util.List<WebElement> states=driver.findElements(By.xpath("//select[@id='id_state']/option"));
+			System.out.println(states.size());
+			System.out.println("state valus are print here");
+			for (int j = 0; j < states.size(); j++) {
+				System.out.println(states.get(j).getText());
+				
+				
+				
+			}
+		}
 
 	/*
 	 * **************************** Email Panel Section Object
@@ -190,47 +204,53 @@ public class Login extends GenericFunctions {
 		int itr = getLastIterationNumber("signindata");
 		System.out.println(itr);
 
-		for (int i = 31; i <= itr; i++) {
+		for (int i = 32; i <= itr; i++) {
 			try {
 
-				String Email = getdata("signindata", "Email", i);
-				settext(email_addres);
+				
 				//email_addres.clear();
 				
-				data_pass(email_addres, Email);
-				hoverAndClick(btn_CreatAccount);
+				
 				//email_addres.sendKeys(Email);
 				//btn_CreatAccount.click();
-				System.out.println("gmail id is enterd into the field");
 				// String userName =btn_home_page.getText();
 				
 				if (athentication_page_header.isDisplayed()) {
+					
+					String Email = getdata("signindata", "Email", i);
+					
+					settext(email_addres);
+					
+					data_pass(email_addres, Email);
+					
+					hoverAndClick(btn_CreatAccount);
+					
+					System.out.println("gmail id is enterd into the field");
+					Thread.sleep(5000);
+
+					java.util.List<WebElement> states=driver.findElements(By.xpath("//select[@id='id_state']/option"));
+					System.out.println("number of states are present here"+states.size());
+					for (int j = 0; j < states.size(); j++) 
+					{
+						System.out.print("  "+states.get(j).getText());
+						String alloptions=states.get(j).getText();
+						
+						
+					}
+					senddata("Sheet2","states",i);
+					
+					
+				
 				//	public static void state(WebElement ele,String value){
 					driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+					
+					//statesRecive(Edi_state);
+					//System.out.println(Edi_state.getSize());
 							
-							java.util.List<WebElement> states=driver.findElements(By.xpath("//select[@id='id_state']"));
-							
-							for (int j = 0; j < states.size(); j++) {
-								System.out.println(states.get(j).getText());
-								System.out.println(states);
-								System.out.println(states.size());
-								System.out.println("state valus are print here");
-								
-							}
 							
 						
 						
 							
-						
-						
-					
-					
-					
-					
-					
-					
-					
-
 					String Firstname = getdata("signindata", "First_name", i);
 					String Lastname = getdata("signindata", "Last_name", i);
 					String password = getdata("signindata", "password", i);
